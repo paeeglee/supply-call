@@ -55,6 +55,10 @@ A janela é só uma janela comum por cima do jogo, e o objetivo é não violar o
 
 ---
 
+## Download
+
+Baixe a última versão: **[SupplyCall.exe](https://github.com/paeeglee/supply-call/releases/latest/download/SupplyCall.exe)**. Não precisa instalar nada. As versões anteriores e o commit de onde cada uma foi compilada estão em [Releases](https://github.com/paeeglee/supply-call/releases).
+
 ## Como usar
 
 1. Coloque o StarCraft II em **Opções → Gráficos → Modo de exibição → "Tela cheia (em janela)"**. Em inglês é *Windowed (Fullscreen)*.
@@ -203,6 +207,10 @@ go generate ./assets             # recria o ícone (.ico/.png) e o recurso do .e
 ---
 
 ## Gerar o build para Windows
+
+### Release no GitHub
+
+Na aba **Actions**, abra o workflow **Release**, clique em **Run workflow** (na `main`) e escolha o que incrementar: `patch`, `minor` ou `major`. Ele calcula a próxima tag a partir da maior `vX.Y.Z` (sem nenhuma tag, sai `v1.0.0`), roda o `build.ps1` com essa versão e confere que o `.exe` mostra essa versão (a mesma do menu da bandeja). Depois cria a tag no commit compilado e publica um Release com o `SupplyCall.exe` e o SHA do commit nas notas. Se algum passo falhar, nenhuma tag é criada.
 
 ### Com o script (recomendado)
 
