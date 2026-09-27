@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "promote_threshold": 2,
+  "window_days": 45,
+  "quarantine_threshold": 2,
+  "next_id": 4,
+  "lessons": [
+    {
+      "id": "L-001",
+      "key": "surviving_mutant::for every numeric bound or sliding window named in an ac add a test whose input crosses that bound so removing it changes the asserted value",
+      "text": "For every numeric bound or sliding window named in an AC, add a test whose input crosses that bound so removing it changes the asserted value",
+      "signal": "surviving_mutant",
+      "scope": "clock",
+      "status": "candidate",
+      "features": [
+        "overlay"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "internal/clock/clock.go:80 (M2), internal/clock/clock.go:117 (M3), CLK-02 (clock)"
+      ],
+      "created": "2026-09-27T02:13:55Z",
+      "last_seen": "2026-09-27T02:13:55Z"
+    },
+    {
+      "id": "L-002",
+      "key": "ac_gap::when one ac saves state on exit and another forbids overwriting a malformed file save on exit only when the value actually changed",
+      "text": "When one AC saves state on exit and another forbids overwriting a malformed file, save on exit only when the value actually changed",
+      "signal": "ac_gap",
+      "scope": "config",
+      "status": "candidate",
+      "features": [
+        "overlay"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "main.go:187 (CFG-03 vs TRAY-08) (config)"
+      ],
+      "created": "2026-09-27T02:13:55Z",
+      "last_seen": "2026-09-27T02:13:55Z"
+    },
+    {
+      "id": "L-003",
+      "key": "ac_gap::move save or skip decisions out of main into a pure function with a test covering the default or nil config case",
+      "text": "Move save or skip decisions out of main into a pure function with a test covering the default or nil config case",
+      "signal": "ac_gap",
+      "scope": "main",
+      "status": "candidate",
+      "features": [
+        "overlay"
+      ],
+      "recurrence": 1,
+      "harmful": 0,
+      "evidence": [
+        "main.go:190 (CFG-03 round 2, mutant M13 untestable) (main)"
+      ],
+      "created": "2026-09-27T02:19:50Z",
+      "last_seen": "2026-09-27T02:19:50Z"
+    }
+  ]
+}

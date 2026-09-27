@@ -1,0 +1,27 @@
+name: Terran Bio + Cyclone + Medivac
+race: Terran
+steps:
+  - {time: "0:35", action: Supply Depot}
+  - {time: "0:48", action: Refinaria, note: "3 SCVs no gás quando terminar"}
+  - {time: "1:06", action: Barrack}
+  - {time: "1:55", action: Factory}
+  - {time: "2:00", action: Comando Orbital, note: "MULE com 50 de energia"}
+  - {time: "2:08", action: Supply Depot}
+  - {time: "2:39", action: Techlab na Barrack, note: "troca com a Factory"}
+  - {time: "2:51", action: 2º Command Center}
+  - {time: "3:09", action: Supply Depot}
+  - {time: "3:16", action: Refinaria}
+  - {time: "3:52", action: Starport}
+  - {time: "3:52", action: Refinaria}
+  - {time: "4:05", action: Reator na Barrack}
+  - {time: "4:10", action: Comando Orbital (natural)}
+  - {time: "4:30", action: 2 Supply Depots}
+  - {time: "4:40", action: Starport pousa no Reator, note: "Medivac x2"}
+  - {time: "4:40", action: Techlab na Barrack (nova)}
+  - {time: "4:45", action: Engineering Bay}
+  - {time: "5:00", action: Stim}
+  - {time: "5:00", action: 2 Barracks}
+  - {time: "5:10", action: +1 Ataque Infantaria}
+  - {time: "5:40", action: Combat Shield}
+reminders:
+  - {text: "TRABALHADOR", every_seconds: 12, until: "7:00"}
