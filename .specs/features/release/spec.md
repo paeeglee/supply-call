@@ -98,25 +98,25 @@ Hoje o `SupplyCall.exe` só existe na máquina de quem roda `build.ps1`. Quem qu
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| REL-01 | P1: Publicar uma versão | Execute | Implementing |
-| REL-02 | P1: Publicar uma versão | Execute | Implementing |
-| REL-03 | P1: Publicar uma versão | Execute | Implementing |
-| REL-04 | P1: Publicar uma versão | Execute | Implementing |
-| REL-05 | P1: Publicar uma versão | Execute | Implementing |
-| REL-06 | P1: Publicar uma versão | Execute | Implementing |
-| REL-07 | P1: Publicar uma versão | Execute | Implementing |
-| REL-08 | P1: Publicar uma versão | Execute | Implementing |
-| REL-09 | P1: Publicar uma versão | Execute | Implementing |
-| REL-10 | P1: Publicar uma versão | Execute | Implementing |
-| REL-11 | P1: Publicar uma versão | Execute | Implementing |
-| REL-12 | P1: Publicar uma versão | Execute | Implementing |
-| REL-13 | P1: Publicar uma versão | Execute | Implementing |
-| REL-14 | P1: Publicar uma versão | Execute | Implementing |
-| REL-15 | P1: Publicar uma versão | Execute | Implementing |
-| REL-16 | P2: Link no README | Execute | Implementing |
-| REL-17 | P1: Publicar uma versão | Execute | Implementing |
-| REL-18 | P1: Publicar uma versão | Execute | Implementing |
-| REL-19 | P1: Publicar uma versão | Execute | Implementing |
+| REL-01 | P1: Publicar uma versão | Execute | Verified |
+| REL-02 | P1: Publicar uma versão | Execute | Verified |
+| REL-03 | P1: Publicar uma versão | Execute | Verified |
+| REL-04 | P1: Publicar uma versão | Execute | Verified |
+| REL-05 | P1: Publicar uma versão | Execute | Verified |
+| REL-06 | P1: Publicar uma versão | Execute | Verified |
+| REL-07 | P1: Publicar uma versão | Execute | Verified |
+| REL-08 | P1: Publicar uma versão | Execute | Verified |
+| REL-09 | P1: Publicar uma versão | Execute | Verified |
+| REL-10 | P1: Publicar uma versão | Execute | Verified |
+| REL-11 | P1: Publicar uma versão | Execute | Verified |
+| REL-12 | P1: Publicar uma versão | Execute | Verified |
+| REL-13 | P1: Publicar uma versão | Execute | Verified |
+| REL-14 | P1: Publicar uma versão | Execute | Verified |
+| REL-15 | P1: Publicar uma versão | Execute | Verified |
+| REL-16 | P2: Link no README | Execute | Verified |
+| REL-17 | P1: Publicar uma versão | Execute | Verified |
+| REL-18 | P1: Publicar uma versão | Execute | Verified |
+| REL-19 | P1: Publicar uma versão | Execute | Verified |
 
 **Coverage:** 19 total, 19 mapped, 0 unmapped.
 
