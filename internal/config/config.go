@@ -80,6 +80,20 @@ func Migrate(base string) (string, error) {
 	return dir, nil
 }
 
+// legacyClickThrough was the first default for move mode. Another program
+// already registers it on the author's PC, so it became Ctrl+Alt+J.
+const legacyClickThrough = "ctrl+alt+m"
+
+// UpgradeLegacyHotkey replaces the old move-mode default (Ctrl+Alt+M) with
+// the current one and reports whether it changed anything.
+func UpgradeLegacyHotkey(c *Config) bool {
+	if strings.ToLower(strings.TrimSpace(c.Hotkeys.ToggleClickThrough)) != legacyClickThrough {
+		return false
+	}
+	c.Hotkeys.ToggleClickThrough = Defaults("").Hotkeys.ToggleClickThrough
+	return true
+}
+
 // Defaults returns the default configuration for a config directory.
 func Defaults(dir string) Config {
 	return Config{

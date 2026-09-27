@@ -119,6 +119,10 @@ func main() {
 		log.Printf("config: %v (usando padrões)", err)
 	}
 	st := &settings{dir: dir, cfg: cfg, inUse: cfg.SelectedBuild}
+	if err == nil && config.UpgradeLegacyHotkey(&cfg) {
+		log.Printf("atalho do modo mover atualizado de Ctrl+Alt+M para %s", cfg.Hotkeys.ToggleClickThrough)
+		st.update(func(c *config.Config) { c.Hotkeys = cfg.Hotkeys })
+	}
 
 	shared := overlay.NewShared(clock.New(time.Now))
 	loadSelected(shared, cfg)

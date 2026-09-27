@@ -97,3 +97,22 @@ func TestMigrateFailureKeepsLegacyFolder(t *testing.T) {
 		t.Errorf("dir = %q, want the legacy folder %q for this run", dir, legacy)
 	}
 }
+
+func TestUpgradeLegacyHotkey(t *testing.T) {
+	// Ctrl+Alt+M was the first default for move mode; it is taken by another
+	// program on the author's PC, so it is upgraded to the current default.
+	c := Config{Hotkeys: Hotkeys{ToggleVisible: "Ctrl+Alt+H", ToggleClickThrough: "Ctrl+Alt+M"}}
+	if !UpgradeLegacyHotkey(&c) || c.Hotkeys.ToggleClickThrough != "Ctrl+Alt+J" || c.Hotkeys.ToggleVisible != "Ctrl+Alt+H" {
+		t.Errorf("upgraded = %+v", c.Hotkeys)
+	}
+	for _, keep := range []string{"Ctrl+Alt+J", "Ctrl+Shift+F10", "ctrl+alt+k"} {
+		c := Config{Hotkeys: Hotkeys{ToggleClickThrough: keep}}
+		if UpgradeLegacyHotkey(&c) || c.Hotkeys.ToggleClickThrough != keep {
+			t.Errorf("%q changed to %q", keep, c.Hotkeys.ToggleClickThrough)
+		}
+	}
+	lower := Config{Hotkeys: Hotkeys{ToggleClickThrough: " ctrl+alt+m "}}
+	if !UpgradeLegacyHotkey(&lower) || lower.Hotkeys.ToggleClickThrough != "Ctrl+Alt+J" {
+		t.Errorf("case/space variant not upgraded: %q", lower.Hotkeys.ToggleClickThrough)
+	}
+}
