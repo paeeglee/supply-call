@@ -22,7 +22,6 @@ Treinar build orders no StarCraft II exige saber, a cada segundo, o que construi
 | Editor visual de builds | A build é editada à mão no `.yml`. |
 | Analisador de replay | Projeto separado. Aqui só se aceita chave extra no `.yml`. |
 | macOS / Linux | Alvo único: Windows amd64. |
-| Esconder a janela da barra de tarefas / Alt+Tab | Não foi pedido. Fica em Deferred Ideas. |
 
 ---
 
@@ -148,6 +147,7 @@ Treinar build orders no StarCraft II exige saber, a cada segundo, o que construi
 9. WHILE o click-through está desligado o overlay SHALL ser arrastável com o botão esquerdo e SHALL mostrar uma borda amarela com o texto "modo mover". (OVL-09)
 10. WHEN o arraste termina, ou o app é fechado, THEN a posição SHALL ser salva em `window_position`. (OVL-10)
 11. WHILE o click-through está desligado a roda do mouse SHALL rolar a lista manualmente até o grupo atual mudar. (OVL-11)
+12. The janela do overlay SHALL não aparecer na barra de tarefas nem no Alt+Tab; o controle fica só no ícone da bandeja. (OVL-12)
 
 **Independent Test**: `go test ./internal/overlay` (modelo de exibição) + print da janela com `-sim`.
 
@@ -342,6 +342,7 @@ Treinar build orders no StarCraft II exige saber, a cada segundo, o que construi
 | OVL-09 | P1: Janela | Done | ✅ Verified |
 | OVL-10 | P1: Janela | Done | ✅ Verified (manual/smoke) |
 | OVL-11 | P1: Janela | Done | ✅ Verified |
+| OVL-12 | P1: Janela | Done | ✅ Verified (manual/smoke) |
 | REM-01 | P1: Lembretes | Done | ✅ Verified |
 | REM-02 | P1: Lembretes | Done | ✅ Verified |
 | REM-03 | P1: Lembretes | Done | ✅ Verified |
@@ -378,7 +379,7 @@ Treinar build orders no StarCraft II exige saber, a cada segundo, o que construi
 | AUTO-02 | P3: Sugestão por raça | Done | ✅ Verified |
 | RELOAD-01 | P3: Recarga automática | Done | ✅ Verified |
 
-**Coverage:** 71 total, 71 mapped to tasks, 0 unmapped. 60 verified with automated tests, 11 manual/smoke (`validation.md`, rodada 3).
+**Coverage:** 72 total, 72 mapped to tasks, 0 unmapped. 60 verified with automated tests, 12 manual/smoke (`validation.md`, rodada 3).
 
 ---
 

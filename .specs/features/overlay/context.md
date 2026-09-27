@@ -61,4 +61,4 @@ Mockup escolhido:
 
 ## Deferred Ideas
 
-- Esconder o overlay da barra de tarefas e do Alt+Tab (`WS_EX_TOOLWINDOW`).
+- (Implementado depois, a pedido: OVL-12, `WS_EX_TOOLWINDOW`.)

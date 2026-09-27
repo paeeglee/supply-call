@@ -188,7 +188,7 @@ A escolha manual sempre vence: se você escolher uma build no menu, ela fica at�
 - A API informa o tempo em segundos inteiros e às vezes demora ou falha. O relógio é interpolado e fica a menos de ~0,5 s do jogo. Uma ou duas consultas perdidas não interrompem a partida.
 - Ao pausar o jogo, o relógio para 1,6 s a 2 s depois da pausa (pode adiantar um pouco e voltar).
 - Replays são ignorados por padrão (`show_replays: false`).
-- A janela aparece na barra de tarefas.
+- A janela não aparece na barra de tarefas nem no Alt+Tab: o controle é pelo ícone da bandeja.
 
 ## Desenvolvimento
 
