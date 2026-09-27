@@ -242,4 +242,4 @@ O resultado é **um único `.exe`** (~18 MB), com fonte e ícone embutidos. Não
 - **O que você construiu:** o overlay não sabe. Ele segue só o relógio.
 - **Relógio:** a API informa o tempo em segundos inteiros, e o relógio é interpolado. Nos testes com o jogo real, ele bateu com o relógio da partida.
 - **Pausa:** ao pausar o jogo, o overlay leva de 1,6 s a 2 s para parar e pode "voltar" um pouco.
-- **Replays:** são ignorados por padrão (`show_replays: false`). Não foram testados com o jogo real.
+- **Replays:** são ignorados por padrão (`show_replays: false`). Com `show_replays: true`, o overlay acompanha replays (testado com o jogo real). Em replay acelerado (ex.: 8×), o relógio pode adiantar alguns segundos e, ao pausar, passa um instante à frente antes de voltar.
