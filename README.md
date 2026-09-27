@@ -2,6 +2,10 @@
 
 **Supply Call** é um overlay para treinar **build orders no StarCraft II**. É uma janela pequena e semitransparente, sempre por cima do jogo. Ela acompanha o relógio da partida e mostra, a cada momento, o que você precisa fazer agora, o que vem a seguir e o que já passou.
 
+![Supply Call sobre o StarCraft II: passos já feitos riscados, o passo atual em laranja com "AGORA" e o lembrete TRABALHADOR no topo](docs/supply-call-in-game.jpg)
+
+*Supply Call acompanhando um replay (acelerado em 8×) aos 2:49: o passo da vez em laranja, os anteriores riscados e o lembrete no topo.*
+
 > **Plataforma:** o programa foi criado e testado **somente no Windows** (Windows 10 Pro 64 bits, com StarCraft II e monitor ultrawide 2560×1080). **Não foi testado no macOS** nem no Linux. O código usa APIs do Windows (bandeja do sistema, atalhos globais, estilo da janela), e o build só é suportado para Windows.
 
 ---
