@@ -1,0 +1,84 @@
+# Builds SupplyCall.exe, tags the built commit as vX.Y.Z and publishes a
+# public Release with the exe. Run it from the Actions tab ("Run workflow").
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Parte da versão a incrementar (sem tags ainda, sai v1.0.0)
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+permissions:
+  contents: write
+
+# A second dispatch waits for the running one, so both never pick the same tag.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - name: Only from main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          Write-Error "Release só roda a partir da main (disparado em $env:GITHUB_REF)."
+          exit 1
+
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+
+      - name: Next version
+        id: version
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: |
+          $tag = git tag --list | go run ./cmd/nextversion $env:BUMP
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          $existing = git ls-remote --tags origin "refs/tags/$tag"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+          if ($existing) { Write-Error "A tag $tag já existe."; exit 1 }
+          "tag=$tag" >> $env:GITHUB_OUTPUT
+          "number=$($tag.Substring(1))" >> $env:GITHUB_OUTPUT
+          Write-Host "Versão: $tag (commit $env:GITHUB_SHA)"
+
+      - name: Build
+        run: ./build.ps1 ${{ steps.version.outputs.number }}
+
+      # The tray menu shows the same main.version that -version prints.
+      - name: Check embedded version
+        env:
+          WANT: Supply Call ${{ steps.version.outputs.number }}
+        run: |
+          $got = (& .\bin\SupplyCall.exe -version | Out-String).Trim()
+          if ($got -ne $env:WANT) { Write-Error "SupplyCall.exe -version = '$got', esperado '$env:WANT'"; exit 1 }
+          Write-Host $got
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: SupplyCall-${{ steps.version.outputs.tag }}
+          path: bin/SupplyCall.exe
+          if-no-files-found: error
+
+      - name: Tag and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          $url = "$env:GITHUB_SERVER_URL/$env:GITHUB_REPOSITORY/commit/$env:GITHUB_SHA"
+          $notes = "Compilado a partir do commit [$env:GITHUB_SHA]($url).`n`nBaixe o ``SupplyCall.exe`` abaixo; não precisa instalar nada."
+          gh release create $env:TAG bin/SupplyCall.exe --target $env:GITHUB_SHA --title $env:TAG --notes $notes
+          if ($LASTEXITCODE -ne 0) { exit 1 }

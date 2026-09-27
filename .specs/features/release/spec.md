@@ -105,18 +105,18 @@ Hoje o `SupplyCall.exe` só existe na máquina de quem roda `build.ps1`. Quem qu
 | REL-05 | P1: Publicar uma versão | Execute | Implementing |
 | REL-06 | P1: Publicar uma versão | Execute | Implementing |
 | REL-07 | P1: Publicar uma versão | Execute | Implementing |
-| REL-08 | P1: Publicar uma versão | Execute | Pending |
-| REL-09 | P1: Publicar uma versão | Execute | Pending |
-| REL-10 | P1: Publicar uma versão | Execute | Pending |
-| REL-11 | P1: Publicar uma versão | Execute | Pending |
-| REL-12 | P1: Publicar uma versão | Execute | Pending |
-| REL-13 | P1: Publicar uma versão | Execute | Pending |
-| REL-14 | P1: Publicar uma versão | Execute | Pending |
-| REL-15 | P1: Publicar uma versão | Execute | Pending |
+| REL-08 | P1: Publicar uma versão | Execute | Implementing |
+| REL-09 | P1: Publicar uma versão | Execute | Implementing |
+| REL-10 | P1: Publicar uma versão | Execute | Implementing |
+| REL-11 | P1: Publicar uma versão | Execute | Implementing |
+| REL-12 | P1: Publicar uma versão | Execute | Implementing |
+| REL-13 | P1: Publicar uma versão | Execute | Implementing |
+| REL-14 | P1: Publicar uma versão | Execute | Implementing |
+| REL-15 | P1: Publicar uma versão | Execute | Implementing |
 | REL-16 | P2: Link no README | Execute | Pending |
-| REL-17 | P1: Publicar uma versão | Execute | Pending |
-| REL-18 | P1: Publicar uma versão | Execute | Pending |
-| REL-19 | P1: Publicar uma versão | Execute | Pending |
+| REL-17 | P1: Publicar uma versão | Execute | Implementing |
+| REL-18 | P1: Publicar uma versão | Execute | Implementing |
+| REL-19 | P1: Publicar uma versão | Execute | Implementing |
 
 **Coverage:** 19 total, 19 mapped, 0 unmapped.
 
