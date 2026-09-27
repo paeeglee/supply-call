@@ -23,6 +23,7 @@ import (
 type Options struct {
 	Ctx     context.Context // cancelled on exit; closes an open folder dialog
 	Icon    []byte          // .ico bytes
+	Name    string          // program name, shown in the tooltip
 	Version string
 	OnQuit  func()   // called once when "Sair" is clicked
 	Sim     *sim.Sim // adds the "Simulação" submenu when set (-sim)
@@ -80,7 +81,7 @@ func Quit() {
 
 func onReady(opts Options) {
 	systray.SetIcon(opts.Icon)
-	systray.SetTooltip("SC2 Build Overlay " + opts.Version)
+	systray.SetTooltip(opts.Name + " " + opts.Version)
 
 	builds := systray.AddMenuItem("Build order", "Escolher a build")
 	buildMenu.mu.Lock()

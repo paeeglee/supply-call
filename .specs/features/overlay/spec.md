@@ -1,5 +1,7 @@
 # SC2 Build Order Overlay: especificação
 
+> **Renomeado para Supply Call** (2026-09-27). Pasta de dados: `%APPDATA%\SupplyCall` (a antiga `SC2BuildOverlay` é migrada na primeira execução); executável `SupplyCall.exe`. O restante deste documento mantém o nome original.
+
 ## Problem Statement
 
 Treinar build orders no StarCraft II exige saber, a cada segundo, o que construir agora e o que vem depois. Olhar uma lista em papel ou em outro monitor tira a atenção do jogo. O overlay mostra a build por cima do jogo, guiado só pelo relógio da partida vindo da SC2 Client API oficial (`localhost:6119`), sem tocar no jogo.

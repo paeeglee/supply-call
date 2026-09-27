@@ -1,6 +1,6 @@
-# SC2 Build Overlay
+# Supply Call
 
-Overlay para treinar **build orders no StarCraft II**. É uma janela pequena e semitransparente, sempre por cima do jogo. Ela acompanha o relógio da partida e mostra, a cada momento, o que você precisa fazer agora, o que vem a seguir e o que já passou.
+**Supply Call** é um overlay para treinar **build orders no StarCraft II**. É uma janela pequena e semitransparente, sempre por cima do jogo. Ela acompanha o relógio da partida e mostra, a cada momento, o que você precisa fazer agora, o que vem a seguir e o que já passou.
 
 > **Plataforma:** o programa foi criado e testado **somente no Windows** (Windows 10 Pro 64 bits, com StarCraft II e monitor ultrawide 2560×1080). **Não foi testado no macOS** nem no Linux. O código usa APIs do Windows (bandeja do sistema, atalhos globais, estilo da janela), e o build só é suportado para Windows.
 
@@ -54,10 +54,11 @@ A janela é só uma janela comum por cima do jogo, e o objetivo é não violar o
 ## Como usar
 
 1. Coloque o StarCraft II em **Opções → Gráficos → Modo de exibição → "Tela cheia (em janela)"**. Em inglês é *Windowed (Fullscreen)*.
-2. Abra o `overlay.exe`. Na primeira execução ele cria:
-   - `%APPDATA%\SC2BuildOverlay\config.yml`: a configuração;
-   - `%APPDATA%\SC2BuildOverlay\builds\`: a pasta de builds, com uma build de exemplo já selecionada;
-   - `%APPDATA%\SC2BuildOverlay\overlay.log`: o log.
+2. Abra o `SupplyCall.exe`. Na primeira execução ele cria:
+   - `%APPDATA%\SupplyCall\config.yml`: a configuração;
+   - `%APPDATA%\SupplyCall\builds\`: a pasta de builds, com uma build de exemplo já selecionada;
+   - `%APPDATA%\SupplyCall\overlay.log`: o log.
+   Se você usava a versão anterior (com o nome "SC2 Build Overlay"), a pasta antiga `%APPDATA%\SC2BuildOverlay` é movida sozinha para `%APPDATA%\SupplyCall` na primeira execução, com config e builds.
 3. Entre numa partida. O relógio começa sozinho.
 4. Para mover a janela, aperte `Ctrl+Alt+J`: aparece uma borda amarela escrita "modo mover". Arraste com o mouse e aperte `Ctrl+Alt+J` de novo. A posição fica salva.
 
@@ -112,10 +113,10 @@ reminders:
 - **Chaves extras:** são ignoradas.
 - **Arquivo inválido:** não derruba o programa. Ele aparece no menu como "arquivo.yml (erro)", desabilitado, e o motivo vai para o `overlay.log`.
 
-### Configuração (`%APPDATA%\SC2BuildOverlay\config.yml`)
+### Configuração (`%APPDATA%\SupplyCall\config.yml`)
 
 ```yaml
-builds_folder: C:\Users\voce\AppData\Roaming\SC2BuildOverlay\builds
+builds_folder: C:\Users\voce\AppData\Roaming\SupplyCall\builds
 selected_build: terran-bio-cyclone-medivac.yml
 hotkeys:
   toggle_visible: Ctrl+Alt+H
@@ -204,7 +205,7 @@ go generate ./assets             # recria o ícone (.ico/.png) e o recurso do .e
 No PowerShell, na pasta do projeto:
 
 ```powershell
-./build.ps1 1.0.1
+./build.ps1 1.1.0
 ```
 
 O script:
@@ -212,13 +213,13 @@ O script:
 1. recria os recursos (`go generate ./assets`);
 2. roda `go vet`;
 3. roda os testes (com `-race` se houver `gcc` no PATH);
-4. compila **`bin\overlay.exe`**.
+4. compila **`bin\SupplyCall.exe`**.
 
 ### Manualmente
 
 ```powershell
 $env:CGO_ENABLED = "0"; $env:GOOS = "windows"; $env:GOARCH = "amd64"
-go build -trimpath -ldflags "-H windowsgui -s -w -X main.version=1.0.1" -o bin\overlay.exe .
+go build -trimpath -ldflags "-H windowsgui -s -w -X main.version=1.1.0" -o bin\SupplyCall.exe .
 ```
 
 - `CGO_ENABLED=0`: Go puro, sem compilador C.
@@ -226,7 +227,7 @@ go build -trimpath -ldflags "-H windowsgui -s -w -X main.version=1.0.1" -o bin\o
 - `-X main.version=...`: define a versão mostrada no menu e no `-version`. Sem ela, aparece `dev`.
 - `-s -w`: remove informações de depuração, o que deixa o arquivo menor.
 
-O resultado é **um único `.exe`** (~18 MB), com fonte e ícone embutidos. Não precisa instalar nada: basta copiar o `overlay.exe` para qualquer pasta e abrir.
+O resultado é **um único `.exe`** (~18 MB), com fonte e ícone embutidos. Não precisa instalar nada: basta copiar o `SupplyCall.exe` para qualquer pasta e abrir.
 
 ---
 

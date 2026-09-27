@@ -1,4 +1,4 @@
-# Builds bin\overlay.exe (single file, no console, no CGO).
+# Builds bin\SupplyCall.exe (single file, no console, no CGO).
 # Usage: ./build.ps1 1.0.0
 param([string]$Version = "dev")
 $ErrorActionPreference = "Stop"
@@ -23,10 +23,10 @@ if (Get-Command gcc -ErrorAction SilentlyContinue) {
 
 $env:CGO_ENABLED = "0"; $env:GOOS = "windows"; $env:GOARCH = "amd64"
 try {
-    Step "go build $Version" { go build -trimpath -ldflags "-H windowsgui -s -w -X main.version=$Version" -o bin\overlay.exe . }
+    Step "go build $Version" { go build -trimpath -ldflags "-H windowsgui -s -w -X main.version=$Version" -o bin\SupplyCall.exe . }
 } finally {
     Remove-Item Env:CGO_ENABLED, Env:GOOS, Env:GOARCH -ErrorAction SilentlyContinue
 }
 
-$exe = Get-Item bin\overlay.exe
+$exe = Get-Item bin\SupplyCall.exe
 Write-Host ("OK: {0} ({1:N1} MB)" -f $exe.FullName, ($exe.Length / 1MB))

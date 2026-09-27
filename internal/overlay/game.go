@@ -90,7 +90,7 @@ func NewGame(s *Shared, opts Options) (*Game, error) {
 
 // Run configures the window and blocks on the main thread until quit.
 func Run(g *Game, icon []byte, x, y int) error {
-	const title = "SC2 Build Overlay"
+	const title = "Supply Call"
 	ebiten.SetWindowTitle(title)
 	go hideFromTaskbar(title)
 	ebiten.SetWindowDecorated(false)

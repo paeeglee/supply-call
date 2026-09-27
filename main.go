@@ -1,5 +1,5 @@
-// Command overlay is a StarCraft II build order overlay driven only by the
-// official SC2 Client API (http://localhost:6119).
+// Command Supply Call is a StarCraft II build order overlay driven only by
+// the official SC2 Client API (http://localhost:6119).
 package main
 
 import (
@@ -25,6 +25,9 @@ import (
 	"sc2overlay/internal/sim"
 	"sc2overlay/internal/tray"
 )
+
+// appName is the program name shown to the user.
+const appName = "Supply Call"
 
 // version is set at build time with -ldflags "-X main.version=x.y.z".
 var version = "dev"
@@ -92,19 +95,25 @@ func main() {
 	}
 
 	if *showVersion {
-		printConsole("SC2 Build Overlay " + version)
+		printConsole(appName + " " + version)
 		return
 	}
 
-	dir, err := config.Dir()
+	base, err := os.UserConfigDir()
 	if err != nil {
 		log.Fatal(err)
 	}
+	// The app used to be "SC2 Build Overlay": move its folder on first run.
+	dir, migrateErr := config.Migrate(base)
 	if f, err := config.OpenLog(dir); err == nil {
 		log.SetOutput(f)
 		defer f.Close()
 	}
-	log.Printf("SC2 Build Overlay %s iniciado", version)
+	log.Printf("%s %s iniciado", appName, version)
+	if migrateErr != nil {
+		log.Printf("não foi possível mover %s para %s (%v); usando a pasta antiga nesta execução",
+			config.LegacyDirName, config.DirName, migrateErr)
+	}
 	cfg, err := config.EnsureFirstRun(dir, assets.ExampleBuildName, assets.ExampleBuild)
 	if err != nil {
 		log.Printf("config: %v (usando padrões)", err)
@@ -152,7 +161,7 @@ func main() {
 	}
 
 	trayDone := tray.Start(tray.Options{
-		Ctx: ctx, Icon: assets.IconICO, Version: version, OnQuit: shared.RequestQuit, Sim: simulator,
+		Ctx: ctx, Icon: assets.IconICO, Name: appName, Version: version, OnQuit: shared.RequestQuit, Sim: simulator,
 		Entries:  func() []build.Entry { return scanBuilds(st.get().BuildsFolder) },
 		Selected: func() string { f, _ := st.current(); return f },
 		OnSelect: func(e build.Entry) {

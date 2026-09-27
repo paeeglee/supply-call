@@ -1,4 +1,4 @@
-// Package config loads and saves %APPDATA%\SC2BuildOverlay\config.yml.
+// Package config loads and saves %APPDATA%\SupplyCall\config.yml.
 package config
 
 import (
@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"gopkg.in/yaml.v3"
 )
@@ -37,13 +38,46 @@ type Position struct {
 	Y int `yaml:"y"`
 }
 
-// Dir returns %APPDATA%\SC2BuildOverlay.
+// Folder names under %APPDATA%. The app was called "SC2 Build Overlay"
+// before it was renamed to Supply Call.
+const (
+	DirName       = "SupplyCall"
+	LegacyDirName = "SC2BuildOverlay"
+)
+
+// Dir returns %APPDATA%\SupplyCall.
 func Dir() (string, error) {
 	base, err := os.UserConfigDir()
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(base, "SC2BuildOverlay"), nil
+	return filepath.Join(base, DirName), nil
+}
+
+// Migrate moves base\SC2BuildOverlay to base\SupplyCall when only the old
+// folder exists, and points builds_folder to the new place if it was inside
+// the old folder. It returns the folder to use: the new one, or the old one
+// (with an error) when the move failed, so nothing is lost.
+func Migrate(base string) (string, error) {
+	dir, legacy := filepath.Join(base, DirName), filepath.Join(base, LegacyDirName)
+	if fi, err := os.Stat(dir); err == nil && fi.IsDir() {
+		return dir, nil
+	}
+	if _, err := os.Stat(legacy); err != nil {
+		return dir, nil
+	}
+	if err := os.Rename(legacy, dir); err != nil {
+		return legacy, err
+	}
+	c, err := Load(dir)
+	if err != nil {
+		return dir, nil // missing or malformed config: nothing to fix
+	}
+	if rel, err := filepath.Rel(legacy, c.BuildsFolder); err == nil && rel != ".." && !strings.HasPrefix(rel, ".."+string(filepath.Separator)) {
+		c.BuildsFolder = filepath.Join(dir, rel)
+		return dir, Save(dir, c)
+	}
+	return dir, nil
 }
 
 // Defaults returns the default configuration for a config directory.

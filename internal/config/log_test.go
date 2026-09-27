@@ -40,7 +40,7 @@ func TestOpenLogTruncatesOverOneMB(t *testing.T) {
 }
 
 func TestOpenLogCreatesDir(t *testing.T) {
-	dir := filepath.Join(t.TempDir(), "SC2BuildOverlay")
+	dir := filepath.Join(t.TempDir(), "SupplyCall")
 	w, err := OpenLog(dir)
 	if err != nil {
 		t.Fatal(err)

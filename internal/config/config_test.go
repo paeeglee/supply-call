@@ -14,8 +14,8 @@ func TestDirIsUnderAppData(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if filepath.Base(d) != "SC2BuildOverlay" {
-		t.Errorf("Dir() = %q, want .../SC2BuildOverlay", d)
+	if filepath.Base(d) != "SupplyCall" {
+		t.Errorf("Dir() = %q, want .../SupplyCall", d)
 	}
 	if appdata := os.Getenv("APPDATA"); appdata != "" && filepath.Dir(d) != appdata {
 		t.Errorf("Dir() = %q, want under %q", d, appdata)
