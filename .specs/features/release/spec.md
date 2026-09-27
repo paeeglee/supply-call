@@ -113,7 +113,7 @@ Hoje o `SupplyCall.exe` só existe na máquina de quem roda `build.ps1`. Quem qu
 | REL-13 | P1: Publicar uma versão | Execute | Implementing |
 | REL-14 | P1: Publicar uma versão | Execute | Implementing |
 | REL-15 | P1: Publicar uma versão | Execute | Implementing |
-| REL-16 | P2: Link no README | Execute | Pending |
+| REL-16 | P2: Link no README | Execute | Implementing |
 | REL-17 | P1: Publicar uma versão | Execute | Implementing |
 | REL-18 | P1: Publicar uma versão | Execute | Implementing |
 | REL-19 | P1: Publicar uma versão | Execute | Implementing |
